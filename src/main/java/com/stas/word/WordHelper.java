@@ -11,7 +11,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +40,7 @@ public class WordHelper {
     public List<String> readWordsFromFile() {
         return document.getParagraphs().stream()
                 .map(XWPFParagraph::getParagraphText)
+                .map(string -> string.replaceAll("\\p{Punct}", ""))
                 .flatMap(string -> Arrays.stream(string.split(" ")))
                 .collect(Collectors.toList());
     }
