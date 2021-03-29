@@ -46,10 +46,15 @@ public class WordHelper {
     }
 
     public void addResultToFile(boolean isAppearsMoreThanOnce) {
-        String builder = "Результат: " + isAppearsMoreThanOnce;
+        String text = "Результат: " + isAppearsMoreThanOnce;
+
         XWPFParagraph p = document.createParagraph();
         XWPFRun pRun = p.createRun();
-        pRun.setText(builder);
+
+        pRun.addBreak();
+        pRun.setText(text);
+        pRun.setFontFamily("Times New Roman");
+        pRun.setFontSize(12);
     }
 
     public void saveDocument() throws IOException {
