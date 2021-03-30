@@ -49,6 +49,13 @@ public class Application {
         return wordAndItAppearingCountMap.get(word) > 1;
     }
 
+    public static String formulateResult(boolean bool) {
+        String result = "Result: " + bool;
+        System.out.println(result);
+
+        return result;
+    }
+
     public static void main(String[] args) {
 
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
@@ -60,8 +67,8 @@ public class Application {
             String lastWord = getLastWord(words);
             Map<String, Integer> map = getWordsAndTheirCountMap(words);
             boolean bool = isAppearsMoreThanOnce(lastWord, map);
-
-            helper.addResultToFile(bool);
+            String result = formulateResult(bool);
+            helper.addResultToFile(result);
             helper.saveDocument();
 
         } catch (IOException e) {
